@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MRIR Transfer</title><link rel="stylesheet" href="/style.css"></head>
+<body><main>
+<header><p class="eyebrow">EXCEL REPORT TRANSFER</p><h1>MRIR to Free Issue</h1><p>Transfer selected MRIR sheets into the next available rows of <strong>Packing list Detail</strong>.</p></header>
+<section class="card">
+<h2>1. Choose your workbooks</h2>
+<div class="uploads"><label>MRIR report — source<input id="source" type="file" accept=".xlsm,.xlsx"><small id="source-info">Choose the workbook containing your MRIR sheets.</small></label><label>Free Issue Shipment and Detail — destination<input id="destination" type="file" accept=".xlsm,.xlsx"><small id="destination-info">Existing rows are kept; you download a new copy.</small></label></div>
+<p class="muted">Both files stay on this computer. Maximum 20 MB per file.</p>
+</section>
+<section class="card"><h2>2. Select MRIR sheets</h2><div class="toolbar"><input id="search" type="search" placeholder="Search sheet names" aria-label="Search MRIR sheets"><button id="select-all" type="button">Select all</button><button id="select-none" type="button">Clear selection</button><span id="selected-count">0 selected</span></div><div id="sheets"><p class="muted">Upload an MRIR workbook to see its sheets.</p></div></section>
+<section class="card"><h2>3. Review the field mapping</h2><p>Header values repeat for every item in the sheet. Item values come from each numbered row, starting at row 9.</p><div class="table-wrap"><table><thead><tr><th>Destination field</th><th>Column</th><th>MRIR source</th></tr></thead><tbody id="mapping"></tbody></table></div><p class="muted">Shipment number is taken from the sheet name, with the report suffix removed. Date received and storage have no confirmed MRIR equivalent.</p><label class="checkbox"><input type="checkbox" id="skip" checked>Skip exact duplicates (MRIR number + item number + description + unit + quantity)</label></section>
+<section class="card"><h2>4. Preview and transfer</h2><div class="toolbar"><button id="preview" class="primary" disabled>Preview transfer</button><button id="download" disabled>Transfer and download Excel</button></div><p id="status" role="status" aria-live="polite">Upload both workbooks to begin.</p><ul id="warnings"></ul><div id="summary"></div><div class="table-wrap"><table id="preview-table" hidden><thead><tr><th>MRIR sheet / row</th><th>Destination row</th><th>Job</th><th>PO</th><th>MRIR No.</th><th>Item</th><th>Material specification</th><th>MRF</th><th>Unit</th><th>Quantity</th><th>Heat</th><th>Certificate</th><th>Remarks</th><th>Shipment</th></tr></thead><tbody id="preview-rows"></tbody></table></div></section>
+<footer>Only empty rows receive new records. Inventory formulas and zero placeholders do not count as entered material data. Downloaded files keep their original .xlsm/.xlsx format.</footer>
+</main><script src="/app.js" defer></script></body></html>
