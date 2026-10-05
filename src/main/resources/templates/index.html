@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Highlight Coordinates</title>
+  <link rel="stylesheet" href="/css/pdf-highlighter.css">
+</head>
+<body>
+  <main>
+    <h1>PDF Highlight Coordinates</h1>
+    <p>Choose a PDF, then click and drag over an area to mark it in yellow.</p>
+    <p>The PDF stays in this browser. Download your JSON before closing or refreshing the page.</p>
+    <label for="pdf-file">PDF file (up to 50 MB)</label>
+    <input id="pdf-file" type="file" accept=".pdf,application/pdf" disabled>
+    <div class="toolbar" aria-label="PDF controls">
+      <button id="previous" disabled>Previous page</button>
+      <span id="page-label">No PDF selected</span>
+      <button id="next" disabled>Next page</button>
+      <label for="zoom">Zoom</label>
+      <select id="zoom" disabled>
+        <option value="0.75">75%</option>
+        <option value="1" selected>100%</option>
+        <option value="1.5">150%</option>
+        <option value="2">200%</option>
+      </select>
+      <button id="undo" disabled>Undo last highlight</button>
+      <button id="clear" disabled>Clear all highlights</button>
+      <button id="export" disabled>Download JSON</button>
+    </div>
+    <p id="status" role="status" aria-live="polite">Loading PDF viewer…</p>
+    <p id="coordinates">Cursor: —</p>
+    <div id="scroll-area">
+      <div id="page-stage" hidden>
+        <canvas id="pdf-canvas" aria-label="PDF page"></canvas>
+        <canvas id="overlay" aria-label="Drag to highlight a rectangular area"></canvas>
+      </div>
+    </div>
+    <h2>Saved selections</h2>
+    <p>Coordinates use PDF user space: x increases rightward, y upward. Page numbers start at 1.</p>
+    <ol id="selections"></ol>
+  </main>
+  <script type="module" src="/js/pdf-highlighter.js"></script>
+</body>
+</html>
